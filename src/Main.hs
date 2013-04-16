@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module Main where
+module Main ( main ) where
 
 import SpatialMath
 import Vis
@@ -31,10 +31,7 @@ ts = 0.01
 trailLength :: Int
 trailLength = 500
 
--- simple forward euler integration
-forwardEulerStep :: Xyz Double -> Xyz Double
-forwardEulerStep xyz = xyz + fmap (*ts) (ddt xyz)
-
+-- 4th order Runge-Kutta integration
 rk4 :: Xyz Double -> Xyz Double
 rk4 xyz = xyz + (1/6) * (k1 + 2*k2 + 2*k3 + k4)
             where k1 = fmap (*ts) (ddt xyz)
